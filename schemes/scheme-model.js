@@ -1,5 +1,5 @@
-const { insert } = require("../knexconfig");
-const database = require("../knexconfig");
+
+const database = require("../data/knexconfig");
 
 function find() {
   return database("schemes");
