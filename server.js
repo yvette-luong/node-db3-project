@@ -19,7 +19,7 @@ server.get("/steps", (req, res ) =>{
     */
     dbsteps.from("steps as st")
     .join("schemes as s","st.scheme_id", "=", "s.id")
-    .select("st.id","s.scheme_name as addedBySteps")
+    .select("st.id","st.step_number", "st.instructions","s.scheme_name as addedBySteps")
     .then(steps => {
         res.status(200).json({data:steps})
     })
