@@ -5,7 +5,7 @@ SELECT product.ProductName, category.CategoryName
 FROM product
 JOIN category ON product.CategoryId = category.Id;
 -- Display the order Id and shipper CompanyName for all orders placed before August 9 2012. Shows 429 records.
---Order is a reserved word, so when you are using a word that the language uses for something else, you have to wrap it in brackets
+--Order is a reserved word, so when you are using a word that the language uses for something else, you have to wrap it in brackets or can be in quote 
 SELECT [o].id, [o].ShipName,  s.CompanyName
 FROM [order] as o
 JOIN shipper as s ON shipper.Id = [o].ShipVia
