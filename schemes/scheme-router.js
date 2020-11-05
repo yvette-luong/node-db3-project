@@ -7,10 +7,10 @@ const router = express.Router();
 router.get('/', (req, res) => {
   Schemes.find()
   .then(schemes => {
-    res.json(schemes);
+    res.status(200).json({schemes:schemes});
   })
   .catch(err => {
-    res.status(500).json({ message: 'Failed to get schemes' });
+    res.status(500).json({ notification: 'Failed to get schemes', errMessage: err.message });
   });
 });
 
@@ -20,13 +20,13 @@ router.get('/:id', (req, res) => {
   Schemes.findById(id)
   .then(scheme => {
     if (scheme) {
-      res.json(scheme);
+      res.status(200).json({schemeById:scheme});
     } else {
-      res.status(404).json({ message: 'Could not find scheme with given id.' })
+      res.status(404).json({ notification: 'Could not find scheme with given id.', errMessage: err.message })
     }
   })
   .catch(err => {
-    res.status(500).json({ message: 'Failed to get schemes' });
+    res.status(500).json({ notification: 'Failed to get schemes', errMessage: err.message });
   });
 });
 
@@ -51,7 +51,7 @@ router.post('/', (req, res) => {
 
   Schemes.add(schemeData)
   .then(scheme => {
-    res.status(201).json(scheme);
+    res.status(201).json({create :scheme});
   })
   .catch (err => {
     res.status(500).json({ message: 'Failed to create new scheme' });
